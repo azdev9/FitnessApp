@@ -1,17 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Progrès</ion-title>
+    <ion-buttons slot="end"><ion-button routerLink="/profile-setup"><ion-icon name="person-circle-outline" slot="icon-only"></ion-icon></ion-button></ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header><ion-card-title>Évolution du poids</ion-card-title></ion-card-header>
+    <ion-card-content><canvas #chartCanvas></canvas></ion-card-content>
+  </ion-card>
 </ion-content>

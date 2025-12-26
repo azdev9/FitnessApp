@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!-- Permet de revenir en arrière si on modifie juste son profil -->
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuration Profil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="max-width: 500px; margin: 0 auto;">
+    <h2 class="ion-text-center ion-margin-bottom">Parlez-nous de vous</h2>
+    
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-label position="floating">Nom Complet</ion-label>
+      <ion-input [(ngModel)]="profile.nom" placeholder="Ex: Abdelaziz"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-label position="floating">Âge</ion-label>
+      <ion-input type="number" [(ngModel)]="profile.age"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-label position="floating">Poids Actuel (kg)</ion-label>
+      <ion-input type="number" [(ngModel)]="profile.poids"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-label position="floating">Taille (cm)</ion-label>
+      <ion-input type="number" [(ngModel)]="profile.taille"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-select label="Sexe" label-placement="floating" [(ngModel)]="profile.sexe">
+        <ion-select-option value="H">Homme</ion-select-option>
+        <ion-select-option value="F">Femme</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item fill="outline" mode="md" class="ion-margin-bottom">
+      <ion-select label="Mon Objectif" label-placement="floating" [(ngModel)]="profile.objectif">
+        <ion-select-option value="perdre">Perdre du poids</ion-select-option>
+        <ion-select-option value="gagner">Prendre du muscle (Masse)</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" shape="round" (click)="valider()" class="ion-margin-top" style="height: 50px;">
+      Générer mon programme
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,17 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start"><ion-button (click)="logout()"><ion-icon name="log-out-outline" slot="icon-only"></ion-icon></ion-button></ion-buttons>
+    <ion-title>Mon Coach</ion-title>
+    <ion-buttons slot="end"><ion-button routerLink="/profile-setup"><ion-icon name="person-circle-outline" slot="icon-only"></ion-icon></ion-button></ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding dashboard-bg">
+  <div *ngIf="profile$ | async as p; else noData">
+    
+    <!-- Widget Calories -->
+    <ion-card class="stats-card">
+      <ion-card-header>
+        <ion-card-subtitle>OBJECTIF QUOTIDIEN</ion-card-subtitle>
+        <ion-card-title>{{ p.objectifCalories }} kcal</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar value="0.5" color="success"></ion-progress-bar>
+        <p class="ion-margin-top">Calculé pour : <b>{{ p.nom }}</b></p>
+      </ion-card-content>
+    </ion-card>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <!-- Checklist -->
+    <div class="section-header">
+      <h3>Missions du {{ today }}</h3>
+    </div>
+    
+    <ion-list lines="none" class="mission-list">
+      <ion-item *ngFor="let m of p.missions" class="mission-item">
+        <ion-checkbox slot="start" [(ngModel)]="m.fait" (ionChange)="updateChecklist(p)">
+          <ion-label>{{ m.titre }}</ion-label>
+        </ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="ion-text-center ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Chargement de votre coach...</p>
+    </div>
+  </ng-template>
 </ion-content>

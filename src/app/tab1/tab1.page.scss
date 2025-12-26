@@ -1,0 +1,29 @@
+.dashboard-bg {
+  --background: #f8f9fa;
+}
+
+.stats-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #3880ff 0%, #3171e0 100%);
+  color: white;
+  ion-card-subtitle, ion-card-title { color: white; }
+}
+
+.section-header h3 {
+  font-weight: bold;
+  margin-left: 8px;
+  color: #444;
+}
+
+.mission-list {
+  background: transparent;
+}
+
+.mission-item {
+  --background: white;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  ion-label { font-weight: 500; }
+}

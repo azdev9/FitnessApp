@@ -1,17 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mon Programme</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/profile-setup">
+        <ion-icon name="person-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  
+  <div *ngIf="profile$ | async as p; else loading">
+    
+    <!-- SECTION NUTRITION -->
+    <h2>🥗 Plan Nutrition</h2>
+    <ion-list lines="inset" *ngIf="p.repasListe && p.repasListe.length > 0; else noData">
+      <ion-item *ngFor="let item of p.repasListe">
+        <ion-label>
+          <h3 style="font-weight: bold;">{{ item.repas }}</h3>
+          <p>{{ item.menu }}</p>
+        </ion-label>
+        <ion-badge slot="end" color="success">{{ item.cal }} cal</ion-badge>
+      </ion-item>
+    </ion-list>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <!-- SECTION SPORT -->
+    <h2 class="ion-margin-top">💪 Plan Sportif</h2>
+    <ion-list lines="inset" *ngIf="p.exercicesListe && p.exercicesListe.length > 0; else noData">
+      <ion-item *ngFor="let ex of p.exercicesListe" color="light">
+        <ion-label>
+          <h3 style="font-weight: bold;">{{ ex.ex }}</h3>
+          <p>{{ ex.type }} — {{ ex.desc }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <!-- Template de chargement (Spinner) -->
+  <ng-template #loading>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+      <p>Chargement de votre programme...</p>
+    </div>
+  </ng-template>
+
+  <!-- Template si les listes sont vides -->
+  <ng-template #noData>
+    <ion-card color="light">
+      <ion-card-content>
+        <p>Aucune donnée trouvée. Veuillez mettre à jour votre profil.</p>
+        <ion-button expand="block" fill="clear" routerLink="/profile-setup">Aller au profil</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
 </ion-content>
