@@ -19,3 +19,5 @@ Une application mobile moderne développée avec **Ionic**, **Angular** et **Fir
 - **Déploiement Mobile** : [Capacitor](https://capacitorjs.com/) pour Android & iOS
 - **Icônes** : [Ionicons](https://ionicons.com/)
 
+##Lien Video (Google Drive)
+https://drive.google.com/drive/folders/1_qX4AllllkQPTih-GQSM9rFyZbJXMS1n?usp=drive_link
